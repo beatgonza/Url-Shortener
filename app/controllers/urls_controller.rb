@@ -27,7 +27,7 @@ class UrlsController < ApplicationController
 
     @url.short_url = params[:url][:url];
 
-    binding.pry
+    #binding.pry
     
     respond_to do |format|
 
@@ -44,7 +44,7 @@ class UrlsController < ApplicationController
 
         # respond_with(@url, :location => new_url_url)
 
-        #  format.html { redirect_to (new_url_url) }
+        #format.html { redirect_to (new_url_url) }
         format.js
 
       else
@@ -69,16 +69,30 @@ class UrlsController < ApplicationController
     #redirect_to @short_url.url
   end
 
-  def caca
+  def create_api
 
-    #a = Hash.new
-    #a["x" => "hola"]
+    a = Hash.new
+    a["x"] = "hola"
 
     #binding.pry
 
     #@url2 = params[:url2]
     #puts @url2
-    #render :json => a.to_json
+    render :json => a.to_json
 
   end
+
+  def show_api
+
+    a = Hash.new
+    a["x"] = "chao"
+
+    #binding.pry
+
+    #@url2 = params[:url2]
+    #puts @url2
+    render :json => a.to_json
+
+  end
+
 end
