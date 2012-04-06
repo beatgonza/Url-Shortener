@@ -9,13 +9,7 @@
 </head>
 <body>
 
-<% if flash[:notice].present? %>
-  <p class='short-link'>
-    The shortened url is available <%= link_to 'here',
-url_url(@url.short_url) %>.
-    (Right click and copy link to share it).
-  </p>
-<% end %>
+<p class="notice"> </p>
 
 <%= yield %>
 

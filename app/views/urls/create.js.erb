@@ -1,10 +1,8 @@
 
 alert("good" );
 
-// alert("good" + @url.url);
+$("#form_url")[0].reset();
 
-$('#form_url').bind('ajax:success', function(){
-  $(this).css("background-color", "ffff00");
-});
+$("a.short-url").text("Test");
 
-// $('body').html("<h1><%= (@url.url) %></h1>").append("<%= (@url.url) %>");  
+

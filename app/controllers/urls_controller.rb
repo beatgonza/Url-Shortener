@@ -2,7 +2,7 @@ class UrlsController < ApplicationController
   
   # respond_to :html, :json, :js
 
-  skip_before_filter :verify_authenticity_token
+  # skip_before_filter :verify_authenticity_token
 
   def new
     @url = Url.new
@@ -16,38 +16,42 @@ class UrlsController < ApplicationController
     @url = Url.new(params[:url])
 
     # Create the shortened version of the url
-    begin
+    #begin
 
-      short_id = (0...8).map{65.+(rand(25)).chr}.join
-      results = Url.where(:short_url => short_id);
+    #  short_id = (0...8).map{65.+(rand(25)).chr}.join
+    #  results = Url.where(:short_url => short_id);
 
-    end while results.length > 0
+    #end while results.length > 0
 
-    @url.short_url = short_id
+    #@url.short_url = short_id
 
-    # @url.short_url = params[:url][:url];
+    @url.short_url = params[:url][:url];
 
     respond_to do |format|
 
       if @url.save
 
         flash[:notice] = 'URL was successfully shortened.'
-        flash[:short_id] = @url.short_url
 
         #flash[:short_id] = @short_url.id
 
-        #render :json => @url.to_json
+        #render :json => @url
         # redirect_to new_url_url
         
         # Luego usar @url.url o @url.short_url en el JS
 
         # respond_with(@url, :location => new_url_url)
-        format.html { redirect_to (new_url_url) }
-        format.js # { render :json => @url }
+
+          format.html { redirect_to (new_url_url) }
+          format.js # { render :json => @url }
+
       else
+        flash[:notice] = 'Error.'
+
         format.html { render :action => "new" }
         format.js
       end
+
     end
 
   end
