@@ -1,11 +1,13 @@
 UrlShortener::Application.routes.draw do
 
-  resources :urls, :only => [:show, :new, :create]
+  resources :urls, :only => [:show, :new, :create, :caca]
 
   root :to => redirect('/urls/new')
   
-  match 'urls/' => 'urls#new', :via => :post, :as => "urls"
-
+  #match 'urls/' => 'urls#new', :via => :post, :as => "urls"
+  #match '/urls' => 'urls_controller#caca', :via => :post
+  match '/urls' => 'urls#caca', :via => :post, :as => "urls"
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

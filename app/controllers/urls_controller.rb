@@ -27,6 +27,8 @@ class UrlsController < ApplicationController
 
     @url.short_url = params[:url][:url];
 
+    binding.pry
+    
     respond_to do |format|
 
       if @url.save
@@ -42,8 +44,8 @@ class UrlsController < ApplicationController
 
         # respond_with(@url, :location => new_url_url)
 
-          format.html { redirect_to (new_url_url) }
-          format.js # { render :json => @url }
+        #  format.html { redirect_to (new_url_url) }
+        format.js
 
       else
         flash[:notice] = 'Error.'
@@ -67,5 +69,16 @@ class UrlsController < ApplicationController
     #redirect_to @short_url.url
   end
 
+  def caca
 
+    #a = Hash.new
+    #a["x" => "hola"]
+
+    #binding.pry
+
+    #@url2 = params[:url2]
+    #puts @url2
+    #render :json => a.to_json
+
+  end
 end
