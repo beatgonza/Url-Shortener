@@ -2,14 +2,11 @@ class UrlsController < ApplicationController
   
   # respond_to :html, :json, :js
 
-  # skip_before_filter :verify_authenticity_token
-
   def new
     @url = Url.new
   end
 
   # POST /urls
-  # POST /urls.json
   # Creates a new shortened url
   def create
 
@@ -25,7 +22,7 @@ class UrlsController < ApplicationController
 
     #@url.short_url = short_id
 
-    @url.short_url = params[:url][:url];
+    #@url.short_url = params[:url][:url];
 
     #binding.pry
     
@@ -33,42 +30,43 @@ class UrlsController < ApplicationController
 
       if @url.save
 
-        flash[:notice] = 'URL was successfully shortened.'
-
-        #flash[:short_id] = @short_url.id
-
-        #render :json => @url
-        # redirect_to new_url_url
-        
-        # Luego usar @url.url o @url.short_url en el JS
-
-        # respond_with(@url, :location => new_url_url)
-
-        #format.html { redirect_to (new_url_url) }
+        flash.now[:notice] = 'URL was successfully shortened.'
         format.js
 
       else
-        flash[:notice] = 'Error.'
 
-        format.html { render :action => "new" }
-        format.js
+        if (@url.id == nil)
+          format.html { render :action => "new" }
+        else
+          format.js
+        end
+
       end
 
     end
 
   end
 
+  # GET /urls/goto/shortened
+  # Sends the user to the desired link
   def show
 
-    # Aqui va lo del GET :)
-    @url = Url.find(params[:id])
-    #render :json => @url.to_json
+    @long = params[:id].to_i(36)
 
-    #redirect_to (@url.short_url).url
+    if Url.exists?(@long)
 
-    #redirect_to @short_url.url
+      @url = Url.find(@long).url
+      redirect_to @url
+
+    else
+      redirect_to root_path
+    end
+
   end
 
+  # For JS API --------------------------
+
+  # POST /urls_api
   def create_api
 
     a = Hash.new
@@ -76,12 +74,11 @@ class UrlsController < ApplicationController
 
     #binding.pry
 
-    #@url2 = params[:url2]
-    #puts @url2
     render :json => a.to_json
 
   end
 
+  # GET /urls_api/goto/shortened
   def show_api
 
     a = Hash.new
@@ -89,8 +86,6 @@ class UrlsController < ApplicationController
 
     #binding.pry
 
-    #@url2 = params[:url2]
-    #puts @url2
     render :json => a.to_json
 
   end

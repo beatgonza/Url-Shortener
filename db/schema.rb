@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(:version => 20120404213352) do
 
   create_table "urls", :force => true do |t|
     t.string   "url",        :null => false
-    t.string   "short_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
