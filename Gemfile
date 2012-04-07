@@ -7,7 +7,8 @@ gem 'rails', '3.2.2'
 
 #gem 'sqlite3-ruby', '1.3.5', :require => 'sqlite', :group => :development
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'sqlite3', :group => :development
 
 gem 'json'
 
