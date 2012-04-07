@@ -7,7 +7,7 @@ gem 'rails', '3.2.2'
 
 #gem 'sqlite3-ruby', '1.3.5', :require => 'sqlite', :group => :development
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'sqlite3', :group => :development
+gem 'sqlite3'
 
 gem 'json'
 
@@ -27,6 +27,10 @@ gem 'jquery-rails'
 gem 'pry', :group => :development
 gem 'pjax_rails'
 gem 'haml'
+
+#group :production do
+#  gem "pg"
+#end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
