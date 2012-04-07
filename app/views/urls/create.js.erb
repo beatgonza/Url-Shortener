@@ -1,8 +1,16 @@
 
-alert("good" );
 
-$("#form_url")[0].reset();
+(function() {
 
-$("a.short-url").text('<%= @url.url %>');
+  alert("good kshafd" );
+  
+  $("#form_url")[0].reset();
+
+  $("a.short-url").text('<%= url_url((@url.id).to_s(36))%>');
+
+  $("a.short-url").attr('href', '<%= url_url((@url.id).to_s(36)) %>');
+
+  $("#notice").html('<%=escape_javascript(flash.now[:notice]) %>');
 
 
+})();
