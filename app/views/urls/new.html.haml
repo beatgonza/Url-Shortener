@@ -1,0 +1,15 @@
+%h1 Url Shortener
+%h3 - By Betty -
+#main_content
+  = form_for (@url, :remote => true, :html => {:class => "remote_for", :id => "form_url"}) do |form|
+    .form_header
+      %p
+        = form.label :url, "Your URL:"
+        = form.text_field :url, :size => 60
+      - if @url.errors[:url].any?
+        %p.error-messages
+          The given url #{@url.errors[:url].to_sentence}.
+      %p.buttons
+        = form.submit "Shorten"
+  %div{"data-pjax-container" => ""}
+    = render 'urls/result'

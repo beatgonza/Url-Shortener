@@ -1,6 +1,4 @@
 class UrlsController < ApplicationController
-  
-  # respond_to :html, :json, :js
 
   def new
     @url = Url.new
@@ -11,20 +9,6 @@ class UrlsController < ApplicationController
   def create
 
     @url = Url.new(params[:url])
-
-    # Create the shortened version of the url
-    #begin
-
-    #  short_id = (0...8).map{65.+(rand(25)).chr}.join
-    #  results = Url.where(:short_url => short_id);
-
-    #end while results.length > 0
-
-    #@url.short_url = short_id
-
-    #@url.short_url = params[:url][:url];
-
-    #binding.pry
     
     respond_to do |format|
 
@@ -70,7 +54,6 @@ class UrlsController < ApplicationController
   # POST /urls_api
   def create_api
 
-    binding.pry
     @url = Url.new(:url => params[:url])
 
     if @url.save
@@ -82,19 +65,12 @@ class UrlsController < ApplicationController
       render :json => url_hash.to_json
     end
 
-    # a = Hash.new
-    # a["x"] = "hola"
-
-    # render :json => a.to_json
-
   end
 
   # GET /urls_api/goto/shortened
   def show_api
 
     url_hash = Hash.new
-
-    #binding.pry
 
     @long = params[:id].to_i(36)
 

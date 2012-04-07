@@ -12,4 +12,10 @@
 //
 
 //= require jquery_ujs
+//= require pjax
 //= require_tree .
+
+$(document).ready(function() {
+  $('.results').hide();
+  $('#notice').hide();
+});
