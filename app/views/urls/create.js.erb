@@ -6,9 +6,9 @@
   
   $("#form_url")[0].reset();
 
-  $("a.short-url").text('<%= root_url.to_s() + (@url.id).to_s(36) %>');
+  $("a.short-url").text('<%= url_url((@url.id).to_s(36))%>');
 
-  $("a.short-url").attr('href', '<%= url_url(@url.id) %>');
+  $("a.short-url").attr('href', '<%= url_url((@url.id).to_s(36)) %>');
 
   $("#notice").html('<%=escape_javascript(flash.now[:notice]) %>');
 

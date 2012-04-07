@@ -8,5 +8,4 @@ UrlShortener::Application.routes.draw do
   match '/urls_api' => 'urls#create_api', :via => :post
   match '/urls_api/:id' => 'urls#show_api', :via => :get, :as => :urls_api
  
-
 end

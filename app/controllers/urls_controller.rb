@@ -56,6 +56,7 @@ class UrlsController < ApplicationController
     if Url.exists?(@long)
 
       @url = Url.find(@long).url
+
       redirect_to @url
 
     else
@@ -69,24 +70,44 @@ class UrlsController < ApplicationController
   # POST /urls_api
   def create_api
 
-    a = Hash.new
-    a["x"] = "hola"
+    binding.pry
+    @url = Url.new(:url => params[:url])
 
-    #binding.pry
+    if @url.save
+      url_hash = Hash.new
 
-    render :json => a.to_json
+      url_hash[:short_url] = root_url.to_s() + "urls_api/" +  (@url.id).to_s(36)
+      url_hash[:url] = @url.url
+
+      render :json => url_hash.to_json
+    end
+
+    # a = Hash.new
+    # a["x"] = "hola"
+
+    # render :json => a.to_json
 
   end
 
   # GET /urls_api/goto/shortened
   def show_api
 
-    a = Hash.new
-    a["x"] = "chao"
+    url_hash = Hash.new
 
     #binding.pry
 
-    render :json => a.to_json
+    @long = params[:id].to_i(36)
+
+    if Url.exists?(@long)
+
+      @url = Url.find(@long).url
+      
+      url_hash[:short_url]  = root_url.to_s() + "urls_api/" + params[:id]
+      url_hash[:url] = @url
+      
+      render :json => url_hash.to_json
+
+    end
 
   end
 
