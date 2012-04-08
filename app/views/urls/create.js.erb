@@ -3,22 +3,24 @@
 
   $("#form_url")[0].reset();
 
-  $('.results').slideDown('fast');
+  $('.results').slideDown('normal');
 
   var list = $('<li class="urls"/>');
 
   appendLinks('short_link', '<%= url_url((@url.id).to_s(36)) %>', list);
   appendLinks('long_link', '<%= @url.url %>', list);
 
-  $('ul.results_body').prepend(list).slideDown(2000);
-
   message = $("#notice").html('<%=escape_javascript(flash.now[:notice]) %>');
 
-  $('#notice').show();
+  $('ul.results_body').prepend(list).slideDown(2000, function(){
 
-  setTimeout(function() {
-    message.slideUp(function() { message.hide(); });
-  }, 2000);
+    $('#notice').show();
+
+    setTimeout(function() {
+      message.slideUp(function() { message.hide(); });
+    }, 2000);
+
+  });
 
 })();
 
@@ -26,8 +28,8 @@ function appendLinks(link_class, link_text, parent) {
 
   $('<a></a>', {
     text: link_text,
-     href: link_text,
-     class: link_class
+    href: link_text,
+    class: link_class
   }).appendTo (parent);
 
 }
